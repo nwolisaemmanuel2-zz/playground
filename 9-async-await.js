@@ -1,5 +1,24 @@
-const doWork = async () => {
-
+const add = (a, b) => {
+    return new Promise ((resolve, reject) => {
+        setTimeout (() => {
+            if (a < 0 || b < 0) {
+                return reject('The value must be positve number')
+            }
+            resolve (a + b)
+        }, 200)
+    })
 }
 
-console.log(doWork())
+const DoWork = async () => {
+    const sum = await add(1, 99)
+    const sum2 = await add(sum, 50)
+    const sum3 = await add(sum2, 90)
+    const sum4 = await add(sum3, 100)
+    return sum4   
+}
+
+DoWork().then((result) => {
+    console.log('result', result)
+}).catch((e) => {
+    console.log('e', e)
+})
